@@ -1,0 +1,16 @@
+{
+  "extends": "./electron-builder.json",
+  "compression": "normal",
+  "concurrency": { "jobs": 1 },
+  "win": {
+    "target": [{ "target": "portable", "arch": ["x64"] }],
+    "artifactName": "INDIFF_Windows_Portable_Test_${version}_${arch}.${ext}",
+    "signAndEditExecutable": false,
+    "signExecutable": false
+  },
+  "portable": {
+    "artifactName": "INDIFF_Windows_Portable_Test_${version}_${arch}.${ext}",
+    "useZip": true,
+    "requestExecutionLevel": "user"
+  }
+}

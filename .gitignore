@@ -1,0 +1,25 @@
+# Dependencies, logs and test output
+node_modules/
+*.log
+qa/
+__pycache__/
+
+# Generated bundles and local tooling
+/dist/
+/artifacts/
+.cache/
+.tools/
+.gradle/
+.android/
+
+# Local configuration and signing material
+.env
+.env.*
+!.env.example
+local.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key

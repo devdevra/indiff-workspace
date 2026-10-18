@@ -1,0 +1,26 @@
+{
+  "name": "indiff-independent-windows-preview",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Independent local UI platform preview, not the original INDIFF application",
+  "type": "module",
+  "main": "main.mjs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepare:web": "node prepare-web.mjs",
+    "start": "npm run prepare:web && electron .",
+    "pack": "npm run prepare:web && electron-builder --win --x64 --dir --publish never --config electron-builder.json",
+    "dist": "npm run prepare:web && electron-builder --win --x64 --publish never --config electron-builder.json",
+    "test": "node --test ../../tests/windows-host.test.mjs",
+    "check": "node --check main.mjs && node --check host-core.mjs && node --check preload.cjs && node --check prepare-web.mjs",
+    "pack:portable": "npm run prepare:web && electron-builder --win portable --x64 --dir --publish never --config electron-builder.portable.json",
+    "dist:portable": "npm run prepare:web && electron-builder --win portable --x64 --publish never --config electron-builder.portable.json"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "26.17.0"
+  }
+}

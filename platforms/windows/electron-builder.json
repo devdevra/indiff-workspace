@@ -1,0 +1,30 @@
+{
+  "appId": "local.indiff.independent.platformpreview",
+  "productName": "INDIFF Independent Platform Preview",
+  "electronVersion": "44.9.0",
+  "asar": true,
+  "npmRebuild": false,
+  "allowMissingDependencies": false,
+  "directories": { "output": "release" },
+  "files": ["main.mjs", "host-core.mjs", "preload.cjs", "web/**/*", "web-manifest.json", "LICENSE"],
+  "publish": null,
+  "win": {
+    "target": [{ "target": "nsis", "arch": ["x64"] }],
+    "artifactName": "indiff-independent-preview-${version}-${arch}-setup.${ext}",
+    "requestedExecutionLevel": "asInvoker",
+    "signAndEditExecutable": false,
+    "signExecutable": false
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowElevation": false,
+    "packElevateHelper": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": false,
+    "createStartMenuShortcut": true,
+    "runAfterFinish": false,
+    "deleteAppDataOnUninstall": false,
+    "differentialPackage": false
+  }
+}

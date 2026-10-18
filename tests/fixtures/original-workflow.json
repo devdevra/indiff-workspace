@@ -1,0 +1,15 @@
+{
+  "name": "원본 계약 보존 검수",
+  "goal": "외부 실행 없이 원본 JSON 구조를 보존한다",
+  "input": "required",
+  "vars": {"작품": "검수"},
+  "cards": [
+    {"id":"reader","title":"읽기","does":"결정 사항 정리","folder":".","prompt":"{{ vars.작품 }}","format":"목록","mode":"plan","type":"claude","vendor_extension":{"keep":true}},
+    {"id":"check","title":"조건","type":"if","test":"exists","future_config":[1,2]},
+    {"id":"boss","title":"검토","session":"fixture-session","session_name":"검수 세션"},
+    {"id":"future","title":"추가 노드","type":"future-unknown","folder":"../sibling","unknown_secret_not_real":"fixture"}
+  ],
+  "links": ["reader -> check: 확인", {"check:yes -> boss":"계속"}, {"from":"boss","to":"future","label":"검수","future_edge":{"keep":1}}],
+  "layout": {"reader":[60,80],"check":[380,80],"boss":[700,80],"future":[1020,80]},
+  "future_root":{"preserve":["한글",true,5]}
+}

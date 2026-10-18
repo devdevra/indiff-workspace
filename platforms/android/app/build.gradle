@@ -1,0 +1,21 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'app.indiff.port'
+    compileSdk 35
+    defaultConfig { applicationId 'app.indiff.port'; minSdk 26; targetSdk 35; versionCode 1; versionName '0.3.0-port-source' }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+    buildTypes { release { minifyEnabled false } }
+    sourceSets { main { assets.srcDirs = ['build/generated/indiffAssets'] } }
+    lint { abortOnError true }
+}
+dependencies { implementation 'androidx.webkit:webkit:1.12.1' }
+// Never copy extracted original server/client or arbitrary workspace files into the APK.
+// Run npm run stage:android from the repository root before invoking Gradle.
+tasks.register('checkStagedWeb') { doLast {
+    def entry = file('build/generated/indiffAssets/web/index.html')
+    if (!entry.exists()) throw new GradleException('Missing web assets: run npm run stage:android from repository root first.')
+} }
+tasks.named('preBuild').configure { dependsOn 'checkStagedWeb' }
+
+// Resolved versions are written only by an actual verified dependency-resolution run.
+dependencyLocking { lockAllConfigurations() }
